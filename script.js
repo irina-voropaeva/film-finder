@@ -18,9 +18,12 @@ function requestAPI(url) {
     request.send();
 
     request.addEventListener('readystatechange', function() {
-        if (request.readyState !== 4) return;
-
+        if (request.readyState !== 4) {
+            movie.innerHTML = 'Loading...';
+            return;
+        }
         if (request.status !== 200) {
+            movie.innerHTML = 'Something went wrong...';
             console.log('Error: ' + request.status);
             return;
         }
